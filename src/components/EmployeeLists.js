@@ -1,5 +1,6 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
+import Employeesmod  from "./ModifieEmployees";
 import {
   Box,
   CircularProgress,
@@ -17,7 +18,6 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const GET_EMPLOYEES = gql`
   query {
@@ -41,7 +41,7 @@ function EployeeLists() {
 
   //Obtencion de la lista de empleados
   const { data, loading, error } = useQuery(GET_EMPLOYEES);
-  console.log(data);
+
 
   if (error) return console.log(error);
 
@@ -69,7 +69,7 @@ function EployeeLists() {
             <MenuItem value={1}>Last Name</MenuItem>
             <MenuItem value={2}>E-mail</MenuItem>
             <MenuItem value={3}>Phone Number</MenuItem>
-            <MenuItem value={4}></MenuItem>
+            <MenuItem value={4}>Nationality</MenuItem>
           </Select>
         </FormControl>
       </Grid>
@@ -114,7 +114,7 @@ function EployeeLists() {
                         {employee.nationality}
                       </TableCell>
                       <TableCell align="center">
-                        <MoreVertIcon />
+                        <Employeesmod/>
                       </TableCell>
                     </TableRow>
                   ))}

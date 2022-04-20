@@ -11,7 +11,8 @@ import {
 
 const client = new ApolloClient({
   uri: 'http://localhost:3100/',
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
+  introspection: true
 });
 
 ReactDOM.render(

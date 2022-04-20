@@ -28,6 +28,8 @@ const GET_EMPLOYEES = gql`
       email_employee
       phone_employee
       nationality
+      civil_status
+      birthday
     }
   }
 `;
@@ -40,19 +42,18 @@ function EployeeLists() {
   };
 
   //Obtencion de la lista de empleados
-  const { data, loading, error } = useQuery(GET_EMPLOYEES);
+  const { data, loading, error } = useQuery(GET_EMPLOYEES,{pollInterval: 500,});
 
 
   if (error) return console.log(error);
 
   return (
     <Grid container spacing={2} justifyContent="center">
-      <Grid item xs={4}>
+      <Grid item xs={6}>
         <TextField
           id="standard-basic"
           label="Search"
           variant="standard"
-          sx={{ width: "30ch" }}
         />
 
         <FormControl sx={{ m: 1, minWidth: 80 }}>
@@ -114,7 +115,7 @@ function EployeeLists() {
                         {employee.nationality}
                       </TableCell>
                       <TableCell align="center">
-                        <Employeesmod/>
+                        <Employeesmod value={employee}/>
                       </TableCell>
                     </TableRow>
                   ))}
